@@ -1,16 +1,16 @@
 node {
     def mvnCmd = isUnix() ? 'sh' : 'bat'
-    def mavenHome = "C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn"
+
 
     stage('Build') {
-        "$mvnCmd" "\"${mavenHome}\" clean install"
+        "$mvnCmd"  "mvn clean install"
     }
 
     stage('Test') {
-        "$mvnCmd" "\"${mavenHome}\" test"
+        "$mvnCmd" "mvn test"
     }
 
     stage('Package') {
-        "$mvnCmd" "\"${mavenHome}\" package"
+        "$mvnCmd" " mvn package"
     }
 }
