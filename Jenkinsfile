@@ -3,12 +3,12 @@ node {
     def mvnCmd = isUnix() ? 'sh' : 'bat'
 
     stage('Build') {
-        "$mvnCmd" './mvnw clean install'
+        "$mvnCmd" 'mvn clean install'
     }
     stage('Test') {
-        "$mvnCmd" './mvnw test'
+        "$mvnCmd" 'mvn test'
     }
     stage('Package') {
-        "$mvnCmd" './mvnw package'
+        "$mvnCmd" 'mvn package'
     }
 }
