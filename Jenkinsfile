@@ -1,14 +1,16 @@
 node {
-    // Détection du système d'exploitation
     def mvnCmd = isUnix() ? 'sh' : 'bat'
+    def mavenHome = "C:\\Program Files\\apache-maven-3.9.9\\bin\\mvn"
 
     stage('Build') {
-        "$mvnCmd" 'mvn clean install'
+        "$mvnCmd" "\"${mavenHome}\" clean install"
     }
+
     stage('Test') {
-        "$mvnCmd" 'mvn test'
+        "$mvnCmd" "\"${mavenHome}\" test"
     }
+
     stage('Package') {
-        "$mvnCmd" 'mvn package'
+        "$mvnCmd" "\"${mavenHome}\" package"
     }
 }
