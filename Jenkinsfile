@@ -1,11 +1,14 @@
 node {
+    // Détection du système d'exploitation
+    def mvnCmd = isUnix() ? 'sh' : 'bat'
+
     stage('Build') {
-        bat 'mvn clean install'
+        "$mvnCmd" 'mvn clean install'
     }
     stage('Test') {
-        bat 'mvn test'
+        "$mvnCmd" 'mvn test'
     }
     stage('Package') {
-        bat 'mvn package'
+        "$mvnCmd" 'mvn package'
     }
 }
