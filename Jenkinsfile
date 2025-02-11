@@ -1,11 +1,11 @@
 node {
     stage('Build') {
-        sh 'mvn clean install'
+        bat 'mvn clean install'
     }
     stage('Test') {
-        sh 'mvn test'
+        bat 'mvn test'
     }
     stage('Package') {
-        sh 'mvn package'
+        bat 'mvn package'
     }
 }
