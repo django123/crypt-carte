@@ -2,14 +2,16 @@ package io.django.crypt_carte.entites;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
 @Table(name = "utilisateur")
 @AllArgsConstructor
 @NoArgsConstructor
+@DynamicUpdate
 public class Utilisateur {
 
     @Id
