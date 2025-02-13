@@ -1,0 +1,47 @@
+services:
+  loki:
+    image: grafana/loki:3.3.0
+    container_name: loki
+    restart: unless-stopped
+    ports:
+      - "29100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./data/loki:/loki
+      - ./configurations/loki/local-config.yaml:/etc/loki/local-config.yaml
+    networks:
+      - application-network
+
+  alloy:
+    image: grafana/alloy:v1.6.1
+    container_name: alloy
+    restart: unless-stopped
+    ports:
+      - "29145:12345"
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    volumes:
+      - ./configurations/alloy/config.alloy:/etc/alloy/config.alloy
+      - ./data/loki:/loki
+      - ../logs:/tmp/logs  //on remonte d'un vers le dossier contenant les logs
+    networks:
+      - application-network
+
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "29000:3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - application-network
+
+
+
+networks:
+  application-network:
+    driver: bridge

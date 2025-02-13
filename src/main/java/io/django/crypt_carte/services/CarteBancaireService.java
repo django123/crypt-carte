@@ -5,13 +5,20 @@ import io.django.crypt_carte.entites.CarteBancaire;
 import io.django.crypt_carte.mapper.CarteBancaireMapper;
 import io.django.crypt_carte.repository.CarteBancaireRepository;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+
 public class CarteBancaireService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CarteBancaireService.class);
 
     private final EncryptionService encryptionService;
     private final CarteBancaireRepository carteBancaireRepository;
@@ -27,6 +34,7 @@ public class CarteBancaireService {
         CarteBancaire carteBancaire = carteBancaireMapper.carteBancaireDTOToCarteBancaire(carteBancaireDTO);
         carteBancaire.setNumeroCarte(encryptionService.encrypt(carteBancaire.getNumeroCarte()));
        CarteBancaire savedCarteBancaire = carteBancaireRepository.save(carteBancaire);
+       LOG.info("Carte créée avec succès");
         return toDtoWithDecryption(savedCarteBancaire);
     }
 

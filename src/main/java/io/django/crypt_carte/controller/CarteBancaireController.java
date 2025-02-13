@@ -4,6 +4,9 @@ import io.django.crypt_carte.dto.CarteBancaireDTO;
 import io.django.crypt_carte.services.CarteBancaireService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +15,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/carte-bancaire")
 @CrossOrigin(origins = "*")
+
 public class CarteBancaireController {
 
     private final CarteBancaireService carteBancaireService;
+    private static final Logger LOG = LoggerFactory.getLogger(CarteBancaireController.class);
 
     public CarteBancaireController(CarteBancaireService carteBancaireService) {
         this.carteBancaireService = carteBancaireService;
@@ -29,6 +34,7 @@ public class CarteBancaireController {
     @PostMapping
     @Operation(summary = "Create a new carte bancaire")
     public ResponseEntity<CarteBancaireDTO> createCarteBancaire(@Valid @RequestBody CarteBancaireDTO carteBancaireDTO) {
+        LOG.info("Carte créée avec succès");
         return ResponseEntity.ok(carteBancaireService.createCarteBancaire(carteBancaireDTO));
     }
 

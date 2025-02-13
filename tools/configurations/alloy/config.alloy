@@ -1,0 +1,25 @@
+
+local.file_match "log_files" {
+  path_targerts = [
+    { "__path__" = "/tmp/logs/*.log" },
+  ]
+}
+
+loki.source.file "log_scrap" {
+  targets = local.file_match.log_files.targets
+  forward_to = [loki.process_logs.receiver]
+  tail_from_end = true
+}
+
+loki_write "grafana_loki" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
+
+
+
+
+
+
+
