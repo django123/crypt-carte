@@ -39,7 +39,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                excuteCommand("mvn clean install")
+                excuteCommand("mvn clean")
             }
         }
 
