@@ -45,6 +45,7 @@ pipeline {
 
         stage('Test') {
             steps {
+
                 excuteCommand("mvn test")
             }
         }
