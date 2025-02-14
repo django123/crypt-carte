@@ -32,4 +32,21 @@ public class CarteBancaireMapperImpl implements CarteBancaireMapper {
         carteBancaire.setDateExpiration(carteBancaireDTO.getDateExpiration());
         return carteBancaire;
     }
+
+    @Override
+    public void updateFromDto(CarteBancaireDTO dto, CarteBancaire entity) {
+        if (dto == null || entity == null) {
+            throw new IllegalArgumentException("Les paramètres dto et entity ne doivent pas être nuls.");
+        }
+
+        if (dto.getNumeroCarte() != null) {
+            entity.setNumeroCarte(dto.getNumeroCarte());
+        }
+        if (dto.getCvv() != null) {
+            entity.setCvv(dto.getCvv());
+        }
+        if (dto.getDateExpiration() != null) {
+            entity.setDateExpiration(dto.getDateExpiration());
+        }
+    }
 }

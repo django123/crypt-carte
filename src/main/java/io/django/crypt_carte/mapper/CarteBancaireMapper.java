@@ -11,4 +11,6 @@ public interface CarteBancaireMapper {
     CarteBancaireDTO carteBancaireToCarteBancaireDTO(CarteBancaire carteBancaire);
 
     CarteBancaire carteBancaireDTOToCarteBancaire(CarteBancaireDTO carteBancaireDTO);
+
+    void updateFromDto(CarteBancaireDTO dto, CarteBancaire entity);
 }
