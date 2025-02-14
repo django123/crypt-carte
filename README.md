@@ -149,3 +149,18 @@ Click Dashboard > manage jenkins> TOOLS >
 ## 6.1) Lancer le job et cliquer sur l'historique de build
 
 ## 6.2) **Click Build_Maven_Artifact JOB** and navigate workspace > webapp > target > webapp.war
+
+## Monitoring & Observabilité
+
+### 7) Monitoring
+#### 7.1) Install loki and grafana
+1. pour cela, on va utiliser le docker-compose.yml
+2. on va lancer le docker-compose.yml
+ ```
+ docker-compose up -d
+ ```
+3. on va aller sur http://localhost:29000 pour voir le dashboard grafana
+4. on va aller sur http://localhost:29145 pour voir le dashboard alloy
+5. on va aller sur http://localhost:29100 pour voir le dashboard loki
+6. on va aller sur http://localhost:3100 pour voir le dashboard loki
+7. on va aller sur http://localhost:9090 pour voir le dashboard prometheus
