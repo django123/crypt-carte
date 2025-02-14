@@ -18,22 +18,23 @@ node {
 
 pipeline {
     agent any
+    def mvnCmd = isUnix() ? 'sh' : 'bat'
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                "$mvnCmd"  "mvn clean install"
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                "$mvnCmd"  "mvn test"
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn package'
+                "$mvnCmd"  "mvn package"
             }
         }
     }
